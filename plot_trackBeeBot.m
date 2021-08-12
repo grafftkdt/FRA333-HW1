@@ -34,14 +34,14 @@ hex = d/(2*sin(pi/6))*[cos(2*pi*[1:6 1]/6);sin(2*pi*[1:6 1]/6)];
 for i = min_i:max_i
     hex_i = hex + [1.5;sqrt(3)/2]*d*(i-1); % translate a hexagon according to i
     for j = min_j:max_j
-        hex_ij = hex_i + [-1.5;sqrt(3)/2]*d*(j-1); % translate a hexagon according to j
+        hex_ij = hex_i + [-1.5;sqrt(3)/2]*d*(j-1)+[0;sqrt(3)]; % translate a hexagon according to j
         plot(ax,hex_ij(1,:),hex_ij(2,:),'k') % draw the hexagon
     end
 end
 % color the special tiles
 for k = 1:size(A,2)
     % compute postion of vertices of the tile on the path
-    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1);
+    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
     if k == 1 % start tile
         color = [0,1,0];
     elseif k == size(A,2) % end tile
@@ -54,14 +54,14 @@ end
 % color the obstacle
 for k = 1:size(O,2)
    % compute postion of vertices of the obstacle tile
-   hex_ij = hex + [1.5;sqrt(3)/2]*d*(O(1,k)-1)+[-1.5;sqrt(3)/2]*d*(O(2,k)-1); 
+   hex_ij = hex + [1.5;sqrt(3)/2]*d*(O(1,k)-1)+[-1.5;sqrt(3)/2]*d*(O(2,k)-1)+[0;sqrt(3)]; 
    patch(ax,hex_ij(1,:),hex_ij(2,:),[0,0,0]) % color the ostavles
 end
 
 % animate the movement of BeeBot
 for k = 1:size(A,2)
     % compute postion of vertices of the current tile
-    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1);
+    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
     patch(ax,hex_ij(1,:),hex_ij(2,:),[0,0,1]) % color the current tile
     if k>1 % if there exists a previous tile
         if all(A(:,k-1)==A(:,1)) % if the previous tile is the start tile
@@ -72,7 +72,7 @@ for k = 1:size(A,2)
             color = [1,1,0];
         end
         % compute postion of vertices of the previous tile 
-        hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k-1)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k-1)-1);
+        hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k-1)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k-1)-1)+[0;sqrt(3)];
         patch(ax,hex_ij(1,:),hex_ij(2,:),color) % color the previous accordingly
     end
     pause(dt);
