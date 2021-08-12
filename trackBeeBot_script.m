@@ -8,10 +8,10 @@
 
 clear;
 load('testcase_without_wall');
-%[A,P] = trackBeeBot(a_i,c,O);
+[A,P] = trackBeeBot(a_i,c,O);
 plot_trackBeeBot(A,O)    
 
 clear;
 load('testcase_with_wall');
-%[A,P] = trackBeeBot(a_i,c,O);
+[A,P] = trackBeeBot(a_i,c,O);
 plot_trackBeeBot(A,O)    
