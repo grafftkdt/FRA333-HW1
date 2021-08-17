@@ -15,9 +15,9 @@ min_x = a_i(1,1);
 max_x = a_i(1,1);
 min_y = a_i(2,1);
 max_y = a_i(2,1);
-direction = 1;      %face to direction 1 by start                    
-dis_x = 1;          %represent the distance to move in X axis
-dis_y = 1;          %represent the distance to move in Y axis
+direction = 1;                          
+dis_x = 1;          
+dis_y = 1;
 P = [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)];
 %     _ 1              _+1,+1
 % 6 /   \2      0,+1 /   \ +1,0
