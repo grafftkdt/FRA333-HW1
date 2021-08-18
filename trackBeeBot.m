@@ -23,24 +23,25 @@ max_y = a_i(2,1);
 direction = 1;      %set the default direction as 1                    
 dis_x = 1;          %represent the distance to move in X axis
 dis_y = 1;          %represent the distance to move in Y axis
-P = [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)]; %
-% P refers to the 
+P = [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)]; 
+%the equation to transform the order in to position in graph
+%P is the position of the point in the graph
 
 
 current_position = a_i;     % start point at a_i
-pre_position = [0;0];
+pre_position = [0;0];       % set the position before moving as 0
 A = a_i;                    % A represents to coordinate(x,y) of the points
 for i = 1:length(c)     %flow n loops ;n = length of c
     pre_position = current_position;
     if (c(i) == '1')    %go forward
-        current_position(1,1) = current_position(1,1)+dis_x;
+        current_position(1,1) = current_position(1,1)+dis_
         current_position(2,1) = current_position(2,1)+dis_y;
         if ~isempty(O)  %in case of having walls
-            find_x = find(O(1,:)==current_position(1,1));   
-            find_y = find(O(2,:)==current_position(2,1));  
-             if isempty((intersect(find_y,find_x)))     
-                 A = [A current_position];  
-                 P = [P [1.5;sqrt(3)/2]*d*(current_position(1,1)-1)+[-1.5;sqrt(3)/2]*d*(current_position(2,1)-1)+[0;sqrt(3)]];
+            find_x = find(O(1,:)==current_position(1,1));   %find the [X,Y] when X equals to current_position(1,1) in first row of O 
+            find_y = find(O(2,:)==current_position(2,1));   %find the [X,Y] when Y equals to current_position(2,1) in second row of O 
+             if isempty((intersect(find_y,find_x)))     %if the current_position is not an element of walls, find_x and find_y won't share any elements.
+                 A = [A current_position];  %add current_position into A
+                 P = [P [1.5;sqrt(3)/2]*d*(current_position(1,1)-1)+[-1.5;sqrt(3)/2]*d*(current_position(2,1)-1)+[0;sqrt(3)]]; %add current location into P
              else
                  current_position = pre_position; %in case of facing to walls >> stay at same point
              end
