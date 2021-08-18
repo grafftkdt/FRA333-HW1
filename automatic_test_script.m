@@ -72,7 +72,7 @@ for i = 1:numel(file_name)
     end
 end
 
-your_ID = 42;
+your_ID = 03;
 class = 1;  % รุ่น 6
 % class = 2; % รุ่น 5
 weight = [5*ones(1,2) 0.5*ones(1,2) 5*ones(1,2) 0.5*ones(1,2) ];

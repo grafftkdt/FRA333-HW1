@@ -1,16 +1,9 @@
 function [A,P] = trackBeeBot(a_i,c,O)
 %trackBeeBot function computes the path by given start point, commands and
-%obstacles. To illustrate, plot_trackBeeBot is used to plot the hexagon
-%graph and filled in the colors that represent following,
-%white hexagon represents the availabled paths,
-%black hexagon represents the walls which are the obstacles,
-%yellow hexagon represents all of the travelled paths of bee bot,
-%green hexagon represents the starting point,
-%red hexagon represents the final point,
-%blue hexagon represents the point where the bee bot is at that time
+%obstacles 
 
 %{
- NAME           : trackBeeBot
+ NAME           : trackBeeBot_script
  AUTHOR         : Thanacha Choopojcharoen
  DATE           : August 20th 2021
  MODIFIED BY    : Keedita Chaihetphon 62340500003 
