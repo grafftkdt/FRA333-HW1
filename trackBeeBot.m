@@ -15,14 +15,18 @@ min_x = a_i(1,1);
 max_x = a_i(1,1);
 min_y = a_i(2,1);
 max_y = a_i(2,1);
-direction = 1;      %face to direction 1 by start                    
-dis_x = 1;          %represent the distance to move in X axis
-dis_y = 1;          %represent the distance to move in Y axis
-P = [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)];
 %     _ 1              _+1,+1
 % 6 /   \2      0,+1 /   \ +1,0
 % 5 \ _ /3      -1,0 \ _ / 0,-1
 %     4              -1,-1
+
+direction = 1;      %set the default direction as 1                    
+dis_x = 1;          %represent the distance to move in X axis
+dis_y = 1;          %represent the distance to move in Y axis
+P = [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)]; %
+% P refers to the 
+
+
 current_position = a_i;     % start point at a_i
 pre_position = [0;0];
 A = a_i;                    % A represents to coordinate(x,y) of the points
@@ -107,57 +111,57 @@ else %in case of no walls
     max_j = max(A(2,:));
 end
 
-d = 1;
-clf;
-ax = axes;
-hold(ax,'on');
-axis(ax,'equal')
-hex = d/(2*sin(pi/6))*[cos(2*pi*[1:6 1]/6);sin(2*pi*[1:6 1]/6)];
-%patch command >> plots one or more filled polygonal regions using the elements of X and Y as the coordinates for each vertex
-
-%creat hex graph
-for i = min_i:max_i  %limit the boundaries of hexagon
-    hex_i = hex + [1.5;sqrt(3)/2]*d*(i-1);
-    for j = min_j:max_j
-        hex_ij = hex_i + [-1.5;sqrt(3)/2]*d*(j-1)+[0;sqrt(3)];
-        plot(ax,hex_ij(1,:),hex_ij(2,:),'k','linewidth',3)
-    end
-end
-
-%black walls
-for k = 1:size(O,2) %limit the boundaries of the walls
-    hex_ij = hex + [1.5;sqrt(3)/2]*d*(O(1,k)-1)+[-1.5;sqrt(3)/2]*d*(O(2,k)-1)+[0;sqrt(3)];
-    patch(ax,hex_ij(1,:),hex_ij(2,:),'black')   %filled the hexagon walls with black
-end
-
-%yellow path
-for k = 1:size(A,2) %along the given coordinates
-    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
-    patch(ax,hex_ij(1,:),hex_ij(2,:),'yellow')  %filled the hexagon paths with yellow
-end
-
-%green hex at start point
-hex_ij = hex + [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)];
-patch(ax,hex_ij(1,:),hex_ij(2,:),'green')   %filled the starting hexagon block with green
-start = hex_ij;
-
-%red hex at final point
-hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,end)-1)+[-1.5;sqrt(3)/2]*d*(A(2,end)-1)+[0;sqrt(3)];
-patch(ax,hex_ij(1,:),hex_ij(2,:),'red')     %filled the final hexagon block with red
-final = hex_ij;
-
-%blue travelling
-for k = 1:size(A,2) %along the given coordinates
-    hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
-    patch(ax,hex_ij(1,:),hex_ij(2,:),'blue')    %filled the travelling hexagon blocks with blue
-    pause(0.1);     %delay 0.1 sec
-    if hex_ij == start
-        patch(ax,hex_ij(1,:),hex_ij(2,:),'green')   %start block remains green after blue block travelled
-    elseif hex_ij == final
-        patch(ax,hex_ij(1,:),hex_ij(2,:),'red')     %final block remains red after blue block travelled
-    else 
-        patch(ax,hex_ij(1,:),hex_ij(2,:),'yellow')  %path blocks remain yellow after blue block travelled
-    end
-end
+% d = 1;
+% clf;
+% ax = axes;
+% hold(ax,'on');
+% axis(ax,'equal')
+% hex = d/(2*sin(pi/6))*[cos(2*pi*[1:6 1]/6);sin(2*pi*[1:6 1]/6)];
+% %patch command >> plots one or more filled polygonal regions using the elements of X and Y as the coordinates for each vertex
+% 
+% %creat hex graph
+% for i = min_i:max_i  %limit the boundaries of hexagon
+%     hex_i = hex + [1.5;sqrt(3)/2]*d*(i-1);
+%     for j = min_j:max_j
+%         hex_ij = hex_i + [-1.5;sqrt(3)/2]*d*(j-1)+[0;sqrt(3)];
+%         plot(ax,hex_ij(1,:),hex_ij(2,:),'k','linewidth',3)
+%     end
+% end
+% 
+% %black walls
+% for k = 1:size(O,2) %limit the boundaries of the walls
+%     hex_ij = hex + [1.5;sqrt(3)/2]*d*(O(1,k)-1)+[-1.5;sqrt(3)/2]*d*(O(2,k)-1)+[0;sqrt(3)];
+%     patch(ax,hex_ij(1,:),hex_ij(2,:),'black')   %filled the hexagon walls with black
+% end
+% 
+% %yellow path
+% for k = 1:size(A,2) %along the given coordinates
+%     hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
+%     patch(ax,hex_ij(1,:),hex_ij(2,:),'yellow')  %filled the hexagon paths with yellow
+% end
+% 
+% %green hex at start point
+% hex_ij = hex + [1.5;sqrt(3)/2]*d*(a_i(1,1)-1)+[-1.5;sqrt(3)/2]*d*(a_i(2,1)-1)+[0;sqrt(3)];
+% patch(ax,hex_ij(1,:),hex_ij(2,:),'green')   %filled the starting hexagon block with green
+% start = hex_ij;
+% 
+% %red hex at final point
+% hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,end)-1)+[-1.5;sqrt(3)/2]*d*(A(2,end)-1)+[0;sqrt(3)];
+% patch(ax,hex_ij(1,:),hex_ij(2,:),'red')     %filled the final hexagon block with red
+% final = hex_ij;
+% 
+% %blue travelling
+% for k = 1:size(A,2) %along the given coordinates
+%     hex_ij = hex + [1.5;sqrt(3)/2]*d*(A(1,k)-1)+[-1.5;sqrt(3)/2]*d*(A(2,k)-1)+[0;sqrt(3)];
+%     patch(ax,hex_ij(1,:),hex_ij(2,:),'blue')    %filled the travelling hexagon blocks with blue
+%     pause(0.1);     %delay 0.1 sec
+%     if hex_ij == start
+%         patch(ax,hex_ij(1,:),hex_ij(2,:),'green')   %start block remains green after blue block travelled
+%     elseif hex_ij == final
+%         patch(ax,hex_ij(1,:),hex_ij(2,:),'red')     %final block remains red after blue block travelled
+%     else 
+%         patch(ax,hex_ij(1,:),hex_ij(2,:),'yellow')  %path blocks remain yellow after blue block travelled
+%     end
+% end
 
 end

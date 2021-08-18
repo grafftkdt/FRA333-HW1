@@ -34,7 +34,6 @@ for i = 1:numel(file_name)
 
     try
         unzip(name,[num2str(class) sprintf('_%d',ID)])
-        
         test_folder = [main_dir '\' [num2str(class) sprintf('_%d',ID)]];
         for j = 1:numel(testcase)
             load(testcase{j});
@@ -73,9 +72,9 @@ for i = 1:numel(file_name)
     end
 end
 
-your_ID = 1;
+your_ID = 42;
 class = 1;  % รุ่น 6
 % class = 2; % รุ่น 5
 weight = [5*ones(1,2) 0.5*ones(1,2) 5*ones(1,2) 0.5*ones(1,2) ];
 homework_grade = (grade(your_ID,:,class)*weight')*10/sum(weight);
-disp(sprintf('Your HW1 grade (ID==%d) is %.2f out of 10',your_ID,homework_grade));
+fprintf('Your HW1 grade (ID==%d) is %.2f out of 10\n',your_ID,homework_grade);
