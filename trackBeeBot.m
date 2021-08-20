@@ -38,6 +38,7 @@ function [A,P] = trackBeeBot(a_i,c,O)
 %load testcase_08.mat;
 %load testcase_without_wall.mat;        %pass
 %load testcase_with_wall.mat;           %pass
+
 d = 1;              % size of the hexagon' side length
 %     _ 1              _+1,+1
 % 6 /   \2      0,+1 /   \ +1,0
@@ -67,7 +68,7 @@ for i = 1:length(c)     %flow n loops ;n = length of c
              else
                  current_position = pre_position; % the current coordinate points is O's element (walls) >> stay at same point
              end
-        else  % O is an empty cell
+        else  %O is an empty cell
             A = [A current_position]; %add current_position into A
             P = [P [1.5;sqrt(3)/2]*d*(current_position(1,1)-1)+[-1.5;sqrt(3)/2]*d*(current_position(2,1)-1)+[0;sqrt(3)]]; %add current coordinate point into P
         end
@@ -85,7 +86,7 @@ for i = 1:length(c)     %flow n loops ;n = length of c
              else
                  current_position = pre_position; % the current coordinate points is O's element (walls) >> stay at same point
              end
-        else  % O is an empty cell
+        else  %O is an empty cell
             A = [A current_position]; %add current_position into A
             P = [P [1.5;sqrt(3)/2]*d*(current_position(1,1)-1)+[-1.5;sqrt(3)/2]*d*(current_position(2,1)-1)+[0;sqrt(3)]]; %add current coordinate point into P
         end
@@ -103,7 +104,7 @@ for i = 1:length(c)     %flow n loops ;n = length of c
     
     
     % circling along the hexagonal sides. From the given information, we
-    % found the movement plattern when the direction is changing as the
+    % found the movement pattern when the direction is changing as the
     % following.
     
     %     _ 1              _+1,+1
@@ -131,7 +132,7 @@ for i = 1:length(c)     %flow n loops ;n = length of c
     end
 end
 
-% The rest of this code is for ploting the result.
+% The rest of this code is for plotting the result.
 
 
 % isequal(A,A)    %recheck the calculated answers 
